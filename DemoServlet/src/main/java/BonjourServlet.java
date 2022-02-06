@@ -12,20 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BonjourServlet
  */
-@WebServlet("/BonjourServlet")
+@WebServlet(urlPatterns={"/bonjour"})
 public class BonjourServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-
-    public BonjourServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw=response.getWriter();
-		pw.println("<h1>Bonjour Perla Abdallah</h1>");
-		pw.close();
-	}
-
+ public void service( HttpServletRequest request,
+HttpServletResponse response )
+ throws ServletException, IOException {
+response.setContentType( "text/html" );
+PrintWriter out = response.getWriter();
+String nom = request.getParameter( "nom" );
+String prenom = request.getParameter( "prenom" );
+out.println( "<html><body>" );
+out.println( "<h1>Exemple de résultat</h1>" );
+out.println( "Bonjour " + prenom + " " + nom );
+out.println( "</body></html>" );
+ }
 }
